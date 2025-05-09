@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ operation }} Result - Free Online Tools{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold mb-3">Your {{ operation }} Result</h1>
+                <p class="lead text-muted">Compare and download your processed image below</p>
+            </div>
+
+            <!-- Result Comparison -->
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-body p-0 overflow-hidden">
+                    <div class="row g-0">
+                        <!-- Original Image -->
+                        <div class="col-md-6 position-relative border-end">
+                            <div class="p-4 text-center bg-light">
+                                <h3 class="h5 mb-3">
+                                    <i class="bi bi-image text-muted me-2"></i>
+                                    Original Image
+                                </h3>
+                                <div class="image-container bg-white p-3 rounded-2 shadow-sm mb-3">
+                                    <img src="{{ original.url }}" 
+                                         alt="Original Image" 
+                                         class="img-fluid rounded" 
+                                         style="max-height: 400px; width: auto;">
+                                </div>
+                                <a href="{{ original.url }}" download 
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-download me-1"></i> Download Original
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Processed Image -->
+                        <div class="col-md-6 position-relative">
+                            <div class="p-4 text-center">
+                                <h3 class="h5 mb-3">
+                                    <i class="bi bi-magic text-primary me-2"></i>
+                                    Processed Image
+                                </h3>
+                                <div class="image-container bg-white p-3 rounded-2 shadow-sm mb-3">
+                                    <img src="{{ processed.url }}" 
+                                         alt="Processed Image" 
+                                         class="img-fluid rounded" 
+                                         style="max-height: 400px; width: auto;">
+                                </div>
+                                <a href="{{ processed.url }}" download 
+                                   class="btn btn-primary btn-sm">
+                                    <i class="bi bi-download me-1"></i> Download Result
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+                <a href="{% url 'tools:home' %}" class="btn btn-outline-secondary px-4">
+                    <i class="bi bi-house me-1"></i> Back to Home
+                </a>
+                
+                {% if operation == 'Background Removal' %}
+                <a href="{% url 'tools:remove_bg' %}" class="btn btn-primary px-4">
+                    <i class="bi bi-stars me-1"></i> Remove Another Background
+                </a>
+                {% elif operation == 'Resize' %}
+                <a href="{% url 'tools:resize' %}" class="btn btn-primary px-4">
+                    <i class="bi bi-arrows-angle-expand me-1"></i> Resize Another Image
+                </a>
+                {% elif operation == 'Format Conversion' %}
+                <a href="{% url 'tools:convert' %}" class="btn btn-primary px-4">
+                    <i class="bi bi-arrow-repeat me-1"></i> Convert Another Image
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Share Options -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                    <h3 class="h5 mb-3">Share Your Result</h3>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-outline-primary btn-sm rounded-circle">
+                            <i class="bi bi-facebook"></i>
+                        </button>
+                        <button class="btn btn-outline-info btn-sm rounded-circle">
+                            <i class="bi bi-twitter"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm rounded-circle">
+                            <i class="bi bi-instagram"></i>
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm rounded-circle">
+                            <i class="bi bi-github"></i>
+                        </button>
+                        <button class="btn btn-outline-success btn-sm rounded-circle">
+                            <i class="bi bi-whatsapp"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .image-container {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    @media (max-width: 768px) {
+        .card-body .row > [class*="col-"] {
+            border-right: none !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+    }
+</style>
+{% endblock %}

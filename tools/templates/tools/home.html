@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Free Online Image Tools - No Registration Required{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-0">
+    <!-- Hero Section -->
+    <div class="hero-section bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-4 fw-bold mb-3">Transform Your Images in Seconds</h1>
+                    <p class="lead text-muted mb-5">Professional-quality editing tools - completely free, no signup needed</p>
+                    
+                    <!-- Before/After Comparison -->
+                    <div class="comparison-container mb-5 mx-auto" style="max-width: 800px;">
+                        <div class="position-relative rounded-3 overflow-hidden shadow">
+                            <div class="row g-0">
+                                <div class="col-md-6 position-relative">
+                                    <img src="{% static 'images/man.jpeg' %}"
+                                         alt="Before editing Photo by Vlada Karpovich: https://www.pexels.com/photo/photo-of-woman-wearing-black-top-4668509/"
+                                         class="img-fluid w-100 h-auto">
+                                    <div class="position-absolute bottom-0 start-0 w-100 py-2 bg-dark bg-opacity-50 text-white text-center">
+                                        Before
+                                    </div>
+                                </div>
+                                <div class="col-md-6 position-relative">
+                                    <img src="{% static 'images/bg_removed_man.png' %}"
+                                         alt="After editing Photo by Vlada Karpovich: https://www.pexels.com/photo/photo-of-woman-wearing-black-top-4668509/"
+                                         class="img-fluid w-100 h-auto">
+                                    <div class="position-absolute bottom-0 start-0 w-100 py-2 bg-primary bg-opacity-90 text-white text-center">
+                                        After
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="badge bg-primary px-4 py-2 fs-6 shadow-sm">
+                                <i class="bi bi-arrow-left-right me-2"></i> Slide to compare
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="#tools" class="btn btn-primary btn-lg px-4 py-3">
+                            <i class="bi bi-magic me-2"></i> Start Editing Now
+                        </a>
+                        <a href="#how-it-works" class="btn btn-outline-primary btn-lg px-4 py-3">
+                            <i class="bi bi-play-circle me-2"></i> See How It Works
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools Section -->
+    <div id="tools" class="container py-5 my-4">
+        <div class="row g-4">
+            <!-- Remove BG Card -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-scale">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-lg bg-primary bg-opacity-10 text-primary rounded-circle mb-4 mx-auto">
+                            <i class="bi bi-backspace-reverse fs-3"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Remove Background</h3>
+                        <p class="text-muted mb-4">AI-powered background removal in one click</p>
+                        <a href="{% url 'tools:remove_bg' %}" class="btn btn-outline-primary w-100">Try Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Resize Card -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-scale">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-lg bg-success bg-opacity-10 text-success rounded-circle mb-4 mx-auto">
+                            <i class="bi bi-arrows-angle-expand fs-3"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Resize Image</h3>
+                        <p class="text-muted mb-4">Perfect dimensions for any platform e.g YouTube Thumbnails</p>
+                        <a href="{% url 'tools:resize' %}" class="btn btn-outline-success w-100">Try Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Convert Card -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-scale">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-lg bg-info bg-opacity-10 text-info rounded-circle mb-4 mx-auto">
+                            <i class="bi bi-arrow-repeat fs-3"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Convert Format</h3>
+                        <p class="text-muted mb-4">Switch between JPG, PNG, WEBP instantly</p>
+                        <a href="{% url 'tools:convert' %}" class="btn btn-outline-info w-100">Try Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div id="how-it-works" class="bg-light py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">How It Works</h2>
+                <p class="text-muted">Three simple steps to perfect images</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center px-3">
+                        <div class="bg-white rounded-circle shadow-sm d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-1 text-primary">1</span>
+                        </div>
+                        <h4 class="h5">Upload Image</h4>
+                        <p class="text-muted mb-0">Drag & drop or select your image file</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center px-3">
+                        <div class="bg-white rounded-circle shadow-sm d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-1 text-primary">2</span>
+                        </div>
+                        <h4 class="h5">Apply Changes</h4>
+                        <p class="text-muted mb-0">Use our tools to edit your image</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center px-3">
+                        <div class="bg-white rounded-circle shadow-sm d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-1 text-primary">3</span>
+                        </div>
+                        <h4 class="h5">Download Result</h4>
+                        <p class="text-muted mb-0">Get your edited image instantly</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="container py-5 my-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-4">Ready to edit your images?</h2>
+                <p class="lead text-muted mb-4">Join thousands of users who edit their images for free every day</p>
+                <a href="#tools" class="btn btn-primary btn-lg px-5">Start Now - It's Free</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .hover-scale {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .icon-lg {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .image-comparison {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}Resize Images - Free Online Tool{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header Section -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold mb-3">Resize Images</h1>
+                <p class="lead text-muted">Adjust your image dimensions to any size while maintaining quality</p>
+            </div>
+
+            <!-- Resize Card -->
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex flex-column flex-md-row align-items-center mb-4">
+                        <div class="icon-xl bg-success bg-opacity-10 text-success rounded-circle mb-3 mb-md-0 me-md-4">
+                            <i class="bi bi-arrows-angle-expand fs-1"></i>
+                        </div>
+                        <div>
+                            <h2 class="h4 mb-2">Precise Resizing</h2>
+                            <p class="text-muted mb-0">Enter exact dimensions in pixels</p>
+                        </div>
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data" class="mt-4">
+                        {% csrf_token %}
+                        
+                        <!-- Upload Section -->
+                        <div class="mb-4">
+                            <label for="{{ form.image.id_for_label }}" class="form-label fw-bold">Upload Image</label>
+                            <div class="file-upload-wrapper border rounded-3 p-4 text-center">
+                                {{ form.image }}
+                                <div class="mt-3">
+                                    <i class="bi bi-image fs-1 text-muted"></i>
+                                    <p class="small text-muted mb-1">Drag & drop your image or click to browse</p>
+                                    <p class="small text-muted">Supports: JPG, PNG, WEBP (Max 10MB)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dimensions Section -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="{{ form.width.id_for_label }}" class="form-label fw-bold">Width (px)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-arrow-left-right"></i></span>
+                                    {{ form.width }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.height.id_for_label }}" class="form-label fw-bold">Height (px)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-arrow-up-down"></i></span>
+                                    {{ form.height }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aspect Ratio Toggle -->
+                        <div class="form-check form-switch mb-4">
+                            <input class="form-check-input" type="checkbox" id="maintainAspect" checked>
+                            <label class="form-check-label" for="maintainAspect">Maintain aspect ratio</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-success btn-lg w-100 py-3">
+                            <i class="bi bi-scissors me-2"></i> Resize Image Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="h4 mb-4">How to resize your images</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-success rounded-circle me-3" style="width: 36px; height: 36px; line-height: 36px;">1</span>
+                                <div>
+                                    <h4 class="h6 mb-1">Upload</h4>
+                                    <p class="small text-muted mb-0">Select your image file</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-success rounded-circle me-3" style="width: 36px; height: 36px; line-height: 36px;">2</span>
+                                <div>
+                                    <h4 class="h6 mb-1">Set Dimensions</h4>
+                                    <p class="small text-muted mb-0">Enter width and height</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-success rounded-circle me-3" style="width: 36px; height: 36px; line-height: 36px;">3</span>
+                                <div>
+                                    <h4 class="h6 mb-1">Download</h4>
+                                    <p class="small text-muted mb-0">Get your resized image</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Sizes Section -->
+            <div class="mt-5">
+                <h3 class="h4 mb-4">Common Image Sizes</h3>
+                <div class="row g-3">
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-secondary w-100 py-2 preset-size" data-width="800" data-height="600">
+                            800×600
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-secondary w-100 py-2 preset-size" data-width="1024" data-height="768">
+                            1024×768
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-secondary w-100 py-2 preset-size" data-width="1920" data-height="1080">
+                            1920×1080
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-outline-secondary w-100 py-2 preset-size" data-width="1080" data-height="1080">
+                            1080×1080
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .file-upload-wrapper {
+        background-color: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        transition: all 0.3s ease;
+    }
+    
+    .file-upload-wrapper:hover {
+        background-color: #f1f3f5;
+        border-color: #adb5bd;
+    }
+    
+    .file-upload-wrapper input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+    }
+    
+    .icon-xl {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .preset-size:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Aspect ratio maintenance
+    const aspectSwitch = document.getElementById('maintainAspect');
+    const widthInput = document.getElementById('{{ form.width.id_for_label }}');
+    const heightInput = document.getElementById('{{ form.height.id_for_label }}');
+    let aspectRatio = 1;
+    
+    // Calculate initial aspect ratio when image is selected
+    document.getElementById('{{ form.image.id_for_label }}').addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    aspectRatio = img.width / img.height;
+                    if (widthInput.value && !heightInput.value) {
+                        heightInput.value = Math.round(widthInput.value / aspectRatio);
+                    }
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+    
+    // Maintain aspect ratio when width changes
+    widthInput.addEventListener('input', function() {
+        if (aspectSwitch.checked && widthInput.value) {
+            heightInput.value = Math.round(widthInput.value / aspectRatio);
+        }
+    });
+    
+    // Maintain aspect ratio when height changes
+    heightInput.addEventListener('input', function() {
+        if (aspectSwitch.checked && heightInput.value) {
+            widthInput.value = Math.round(heightInput.value * aspectRatio);
+        }
+    });
+    
+    // Preset size buttons
+    document.querySelectorAll('.preset-size').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            widthInput.value = this.dataset.width;
+            heightInput.value = this.dataset.height;
+        });
+    });
+});
+</script>
+{% endblock %}

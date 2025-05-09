@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}Remove Image Background - Free AI Tool{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header Section -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold mb-3">Remove Backgrounds Instantly</h1>
+                <p class="lead text-muted">AI-powered background removal with one click - no skills required</p>
+            </div>
+
+            <!-- Before/After Demo -->
+            <div class="comparison-slider mb-5 mx-auto" style="max-width: 800px;">
+                <div class="position-relative rounded-3 overflow-hidden shadow">
+                    <div class="row g-0">
+                        <div class="col-md-6 position-relative">
+                            <img src="https://placehold.co/600x400/e2e8f0/94a3b8?text=Original+Image" 
+                                 alt="Before background removal" 
+                                 class="img-fluid w-100 h-auto">
+                            <div class="position-absolute bottom-0 start-0 w-100 py-2 bg-dark bg-opacity-50 text-white text-center">
+                                Before
+                            </div>
+                        </div>
+                        <div class="col-md-6 position-relative">
+                            <img src="https://placehold.co/600x400/ffffff/94a3b8?text=No+Background" 
+                                 alt="After background removal" 
+                                 class="img-fluid w-100 h-auto">
+                            <div class="position-absolute bottom-0 start-0 w-100 py-2 bg-primary bg-opacity-90 text-white text-center">
+                                After
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <span class="badge bg-primary px-4 py-2 fs-6 shadow-sm">
+                        <i class="bi bi-arrow-left-right me-2"></i> Slide to compare
+                    </span>
+                </div>
+            </div>
+
+            <!-- Upload Card -->
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex flex-column flex-md-row align-items-center mb-4">
+                        <div class="icon-xl bg-primary bg-opacity-10 text-primary rounded-circle mb-3 mb-md-0 me-md-4">
+                            <i class="bi bi-magic fs-1"></i>
+                        </div>
+                        <div>
+                            <h2 class="h4 mb-2">AI Background Removal</h2>
+                            <p class="text-muted mb-0">Upload any image - we'll handle the rest</p>
+                        </div>
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data" class="mt-4">
+                        {% csrf_token %}
+                        
+                        <!-- Upload Section -->
+                        <div class="mb-4">
+                            <label for="{{ form.image.id_for_label }}" class="form-label fw-bold">Upload Image</label>
+                            <div class="file-upload-wrapper border rounded-3 p-4 text-center">
+                                {{ form.image }}
+                                <div class="mt-3">
+                                    <i class="bi bi-cloud-arrow-up fs-1 text-muted"></i>
+                                    <p class="small text-muted mb-1">Drag & drop your image or click to browse</p>
+                                    <p class="small text-muted">Supports: JPG, PNG, WEBP (Max 10MB)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Options (Collapsed) -->
+                        <div class="accordion mb-4" id="advancedOptions">
+                            <div class="accordion-item border-0">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdvanced">
+                                        <i class="bi bi-gear me-2"></i> Advanced Options
+                                    </button>
+                                </h3>
+                                <div id="collapseAdvanced" class="accordion-collapse collapse" data-bs-parent="#advancedOptions">
+                                    <div class="accordion-body pt-3">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" id="highQuality" checked>
+                                            <label class="form-check-label" for="highQuality">High Quality Mode</label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" id="keepShadows">
+                                            <label class="form-check-label" for="keepShadows">Keep Natural Shadows</label>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="autoCrop" checked>
+                                            <label class="form-check-label" for="autoCrop">Auto-Crop Background</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+                            <i class="bi bi-stars me-2"></i> Remove Background Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="h4 mb-4">How our background remover works</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary rounded-circle me-3" style="width: 36px; height: 36px; line-height: 36px;">1</span>
+                                <div>
+                                    <h4 class="h6 mb-1">Upload</h4>
+                                    <p class="small text-muted mb-0">Select any photo with a background</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary rounded-circle me-3" style="width: 36px; height: 36px; line-height: 36px;">2</span>
+                                <div>
+                                    <h4 class="h6 mb-1">AI Processing</h4>
+                                    <p class="small text-muted mb-0">Our AI detects and removes the background</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-primary rounded-circle me-3" style="width: 36px; height: 36px; line-height: 36px;">3</span>
+                                <div>
+                                    <h4 class="h6 mb-1">Download</h4>
+                                    <p class="small text-muted mb-0">Get your transparent PNG image</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Cases Section -->
+            <div class="mt-5">
+                <h3 class="h4 mb-4">Perfect for:</h3>
+                <div class="row g-3">
+                    <div class="col-6 col-md-3">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body text-center p-3">
+                                <i class="bi bi-cart fs-4 text-primary mb-2"></i>
+                                <p class="small mb-0">E-commerce Products</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body text-center p-3">
+                                <i class="bi bi-person-bounding-box fs-4 text-primary mb-2"></i>
+                                <p class="small mb-0">Portrait Photos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body text-center p-3">
+                                <i class="bi bi-brush fs-4 text-primary mb-2"></i>
+                                <p class="small mb-0">Graphic Design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card border-0 bg-light h-100">
+                            <div class="card-body text-center p-3">
+                                <i class="bi bi-instagram fs-4 text-primary mb-2"></i>
+                                <p class="small mb-0">Social Media</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .file-upload-wrapper {
+        background-color: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        transition: all 0.3s ease;
+    }
+    
+    .file-upload-wrapper:hover {
+        background-color: #f1f3f5;
+        border-color: #adb5bd;
+    }
+    
+    .file-upload-wrapper input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+    }
+    
+    .icon-xl {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .comparison-slider {
+        position: relative;
+    }
+    
+    .comparison-slider .badge {
+        cursor: ew-resize;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Simple image comparison slider
+    const slider = document.querySelector('.comparison-slider .badge');
+    const beforeAfter = document.querySelector('.comparison-slider .row');
+    
+    if (slider && beforeAfter) {
+        slider.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            document.addEventListener('mousemove', moveSlider);
+            document.addEventListener('mouseup', stopSlider);
+        });
+        
+        function moveSlider(e) {
+            const container = beforeAfter.parentElement;
+            const containerRect = container.getBoundingClientRect();
+            let pos = (e.clientX - containerRect.left) / containerRect.width;
+            pos = Math.max(0, Math.min(1, pos));
+            beforeAfter.style.clipPath = `inset(0 ${(1 - pos) * 100}% 0 0)`;
+        }
+        
+        function stopSlider() {
+            document.removeEventListener('mousemove', moveSlider);
+            document.removeEventListener('mouseup', stopSlider);
+        }
+    }
+});
+</script>
+{% endblock %}
